@@ -3,6 +3,7 @@ package me.andresp.zipkin.impl;
 import me.andresp.zipkin.api.ZipkinData;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class ZipkinDataImpl implements ZipkinData {
 
@@ -57,5 +58,23 @@ public class ZipkinDataImpl implements ZipkinData {
 
   public static ZipkinData disabled() {
     return unsampled;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ZipkinDataImpl that = (ZipkinDataImpl) o;
+    return Objects.equals(traceId, that.traceId) &&
+      Objects.equals(spanId, that.spanId) &&
+      Objects.equals(parentSpanId, that.parentSpanId) &&
+      Objects.equals(sampled, that.sampled) &&
+      Objects.equals(flags, that.flags) &&
+      Objects.equals(spanName, that.spanName);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(traceId, spanId, parentSpanId, sampled, flags, spanName);
   }
 }

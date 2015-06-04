@@ -1,6 +1,6 @@
 package me.andresp.zipkin.api;
 
-import me.andresp.zipkin.impl.ZipkinAnnotationsStoreImpl;
+import me.andresp.zipkin.impl.ZipkinAnnotationsStore;
 
 import javax.annotation.Nonnull;
 
@@ -30,6 +30,6 @@ public interface ZipkinEmitter {
 
   ZipkinAnnotationsStore buildAnnotationsStore(@Nonnull ZipkinData zipkinData);
 
-  void emitAnnotations(@Nonnull ZipkinAnnotationsStoreImpl zipkinAnnotationsStore);
+  void emitAnnotations(@Nonnull ZipkinAnnotationsStore zipkinAnnotationsStore);
 
 }

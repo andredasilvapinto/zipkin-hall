@@ -6,7 +6,6 @@ package me.andresp.zipkin.impl;
 
 import com.github.kristofa.brave.zipkin.ZipkinSpanCollector;
 import com.twitter.zipkin.gen.Endpoint;
-import me.andresp.zipkin.api.ZipkinAnnotationsStore;
 import me.andresp.zipkin.api.ZipkinData;
 import me.andresp.zipkin.api.ZipkinEmitter;
 
@@ -40,7 +39,7 @@ public class ZipkinEmitterImpl implements ZipkinEmitter {
   @Nonnull
   public ZipkinAnnotationsStore buildAnnotationsStore(@Nonnull ZipkinData zipkinData) {
     Objects.requireNonNull(zipkinData);
-    return new ZipkinAnnotationsStoreImpl(zipkinData, endpoint);
+    return new ZipkinAnnotationsStore(zipkinData, endpoint);
   }
 
   /**
@@ -48,9 +47,9 @@ public class ZipkinEmitterImpl implements ZipkinEmitter {
    *
    * @param zipkinAnnotationsStore Zipkin annotations storage representing the entire list of annotations to emit
    */
-  public void emitAnnotations(@Nonnull ZipkinAnnotationsStoreImpl zipkinAnnotationsStore) {
+  public void emitAnnotations(@Nonnull ZipkinAnnotationsStore zipkinAnnotationsStore) {
     Objects.requireNonNull(zipkinAnnotationsStore);
-    zipkinSpanCollector.collect(zipkinAnnotationsStore.generate());
+    zipkinSpanCollector.collect(zipkinAnnotationsStore.generateSpan());
   }
 
 
@@ -73,43 +72,43 @@ public class ZipkinEmitterImpl implements ZipkinEmitter {
   }
 
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String s) {
-    ZipkinAnnotationsStoreImpl store = prepareEmission(zipkinData, s).addAnnotation(s);
+    ZipkinAnnotationsStore store = prepareEmission(zipkinData, s).addAnnotation(s);
     emitAnnotations(store);
   }
 
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, @Nonnull String value) {
     Objects.requireNonNull(value);
-    ZipkinAnnotationsStoreImpl store = prepareEmission(zipkinData, key).addAnnotation(key, value);
+    ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, short value) {
-    ZipkinAnnotationsStoreImpl store = prepareEmission(zipkinData, key).addAnnotation(key, value);
+    ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, int value) {
-    ZipkinAnnotationsStoreImpl store = prepareEmission(zipkinData, key).addAnnotation(key, value);
+    ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, long value) {
-    ZipkinAnnotationsStoreImpl store = prepareEmission(zipkinData, key).addAnnotation(key, value);
+    ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, double value) {
-    ZipkinAnnotationsStoreImpl store = prepareEmission(zipkinData, key).addAnnotation(key, value);
+    ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, boolean value) {
-    ZipkinAnnotationsStoreImpl store = prepareEmission(zipkinData, key).addAnnotation(key, value);
+    ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, byte[] value) {
-    ZipkinAnnotationsStoreImpl store = prepareEmission(zipkinData, key).addAnnotation(key, value);
+    ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
