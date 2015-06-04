@@ -1,3 +1,7 @@
+/*
+* Derived from original work for Betfair under Apache License, Version 2.0
+*/
+
 package me.andresp.zipkin.impl;
 
 import com.twitter.zipkin.gen.*;
