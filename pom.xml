@@ -27,8 +27,18 @@
 
     <scm>
         <connection>scm:git:git@github.com:andredasilvapinto/zipkin-hall.git</connection>
+        <developerConnection>scm:git:git@github.com:andredasilvapinto/zipkin-hall.git</developerConnection>
         <url>https://github.com/andredasilvapinto/zipkin-hall</url>
     </scm>
+
+    <developers>
+        <developer>
+            <name>André Pinto</name>
+            <url>http://www.andresp.me</url>
+            <organization>Spotify</organization>
+            <organizationUrl>http://www.spotify.com</organizationUrl>
+        </developer>
+    </developers>
 
     <properties>
         <brave-version>2.4.2</brave-version>
