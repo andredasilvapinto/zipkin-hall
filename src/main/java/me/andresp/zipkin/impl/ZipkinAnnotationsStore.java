@@ -60,42 +60,49 @@ public class ZipkinAnnotationsStore {
   public ZipkinAnnotationsStore addAnnotation(@Nonnull String key, @Nonnull String value) {
     // Using default charset
     ByteBuffer wrappedValue = ByteBuffer.wrap(value.getBytes());
+    wrappedValue.flip();
     return addBinaryAnnotation(key, wrappedValue, AnnotationType.STRING, endpoint);
   }
 
   @Nonnull
   public ZipkinAnnotationsStore addAnnotation(@Nonnull String key, short value) {
     ByteBuffer wrappedValue = ByteBuffer.allocate(SHORT_SIZE_B).putShort(value);
+    wrappedValue.flip();
     return addBinaryAnnotation(key, wrappedValue, AnnotationType.I16, endpoint);
   }
 
   @Nonnull
   public ZipkinAnnotationsStore addAnnotation(@Nonnull String key, int value) {
     ByteBuffer wrappedValue = ByteBuffer.allocate(INT_SIZE_B).putInt(value);
+    wrappedValue.flip();
     return addBinaryAnnotation(key, wrappedValue, AnnotationType.I32, endpoint);
   }
 
   @Nonnull
   public ZipkinAnnotationsStore addAnnotation(@Nonnull String key, long value) {
     ByteBuffer wrappedValue = ByteBuffer.allocate(LONG_SIZE_B).putLong(value);
+    wrappedValue.flip();
     return addBinaryAnnotation(key, wrappedValue, AnnotationType.I64, endpoint);
   }
 
   @Nonnull
   public ZipkinAnnotationsStore addAnnotation(@Nonnull String key, double value) {
     ByteBuffer wrappedValue = ByteBuffer.allocate(DOUBLE_SIZE_B).putDouble(value);
+    wrappedValue.flip();
     return addBinaryAnnotation(key, wrappedValue, AnnotationType.DOUBLE, endpoint);
   }
 
   @Nonnull
   public ZipkinAnnotationsStore addAnnotation(@Nonnull String key, boolean value) {
     ByteBuffer wrappedValue = value ? TRUE_BB : FALSE_BB;
+    wrappedValue.flip();
     return addBinaryAnnotation(key, wrappedValue, AnnotationType.BOOL, endpoint);
   }
 
   @Nonnull
   public ZipkinAnnotationsStore addAnnotation(@Nonnull String key, byte[] value) {
     ByteBuffer wrappedValue = ByteBuffer.wrap(value);
+    wrappedValue.flip();
     return addBinaryAnnotation(key, wrappedValue, AnnotationType.BYTES, endpoint);
   }
 
