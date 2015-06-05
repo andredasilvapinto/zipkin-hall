@@ -14,6 +14,8 @@ public interface ZipkinEmitter {
 
   void emitClientReceive(@Nonnull ZipkinData zipkinData);
 
+  void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String s);
+
   void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, @Nonnull String value);
 
   void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, short value);

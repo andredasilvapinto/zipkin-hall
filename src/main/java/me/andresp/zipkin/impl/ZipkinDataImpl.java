@@ -77,4 +77,16 @@ public class ZipkinDataImpl implements ZipkinData {
   public int hashCode() {
     return Objects.hash(traceId, spanId, parentSpanId, sampled, flags, spanName);
   }
+
+  @Override
+  public String toString() {
+    return "ZipkinDataImpl{" +
+      "traceId='" + traceId + '\'' +
+      ", spanId='" + spanId + '\'' +
+      ", parentSpanId='" + parentSpanId + '\'' +
+      ", sampled='" + sampled + '\'' +
+      ", flags='" + flags + '\'' +
+      ", spanName='" + spanName + '\'' +
+      '}';
+  }
 }

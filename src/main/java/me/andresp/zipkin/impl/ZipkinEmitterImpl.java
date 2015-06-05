@@ -36,6 +36,7 @@ public class ZipkinEmitterImpl implements ZipkinEmitter {
    * @param zipkinData Zipkin request data
    * @return Zipkin annotations storage capable of merging multiple annotations per emission
    */
+  @Override
   @Nonnull
   public ZipkinAnnotationsStore buildAnnotationsStore(@Nonnull ZipkinData zipkinData) {
     Objects.requireNonNull(zipkinData);
@@ -47,6 +48,7 @@ public class ZipkinEmitterImpl implements ZipkinEmitter {
    *
    * @param zipkinAnnotationsStore Zipkin annotations storage representing the entire list of annotations to emit
    */
+  @Override
   public void emitAnnotations(@Nonnull ZipkinAnnotationsStore zipkinAnnotationsStore) {
     Objects.requireNonNull(zipkinAnnotationsStore);
     zipkinSpanCollector.collect(zipkinAnnotationsStore.generateSpan());
@@ -54,59 +56,70 @@ public class ZipkinEmitterImpl implements ZipkinEmitter {
 
 
   // Single annotation emission methods
-
+  @Override
   public void emitServerReceive(@Nonnull ZipkinData zipkinData) {
     emitAnnotation(zipkinData, SERVER_RECV);
   }
 
+  @Override
   public void emitServerSend(@Nonnull ZipkinData zipkinData) {
     emitAnnotation(zipkinData, SERVER_SEND);
   }
 
+  @Override
   public void emitClientSend(@Nonnull ZipkinData zipkinData) {
     emitAnnotation(zipkinData, CLIENT_SEND);
   }
 
+  @Override
   public void emitClientReceive(@Nonnull ZipkinData zipkinData) {
     emitAnnotation(zipkinData, CLIENT_RECV);
   }
 
+  @Override
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String s) {
     ZipkinAnnotationsStore store = prepareEmission(zipkinData, s).addAnnotation(s);
     emitAnnotations(store);
   }
 
+  @Override
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, @Nonnull String value) {
     Objects.requireNonNull(value);
     ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
+  @Override
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, short value) {
     ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
+  @Override
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, int value) {
     ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
+  @Override
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, long value) {
     ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
+  @Override
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, double value) {
     ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
+  @Override
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, boolean value) {
     ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
   }
 
+  @Override
   public void emitAnnotation(@Nonnull ZipkinData zipkinData, @Nonnull String key, byte[] value) {
     ZipkinAnnotationsStore store = prepareEmission(zipkinData, key).addAnnotation(key, value);
     emitAnnotations(store);
