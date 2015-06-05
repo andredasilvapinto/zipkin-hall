@@ -60,7 +60,6 @@ public class ZipkinAnnotationsStore {
   public ZipkinAnnotationsStore addAnnotation(@Nonnull String key, @Nonnull String value) {
     // Using default charset
     ByteBuffer wrappedValue = ByteBuffer.wrap(value.getBytes());
-    wrappedValue.flip();
     return addBinaryAnnotation(key, wrappedValue, AnnotationType.STRING, endpoint);
   }
 
