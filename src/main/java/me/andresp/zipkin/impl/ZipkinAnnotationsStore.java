@@ -95,14 +95,12 @@ public class ZipkinAnnotationsStore {
   @Nonnull
   public ZipkinAnnotationsStore addAnnotation(@Nonnull String key, boolean value) {
     ByteBuffer wrappedValue = value ? TRUE_BB : FALSE_BB;
-    wrappedValue.flip();
     return addBinaryAnnotation(key, wrappedValue, AnnotationType.BOOL, endpoint);
   }
 
   @Nonnull
   public ZipkinAnnotationsStore addAnnotation(@Nonnull String key, byte[] value) {
     ByteBuffer wrappedValue = ByteBuffer.wrap(value);
-    wrappedValue.flip();
     return addBinaryAnnotation(key, wrappedValue, AnnotationType.BYTES, endpoint);
   }
 
