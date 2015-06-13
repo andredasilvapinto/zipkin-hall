@@ -1,5 +1,5 @@
 # zipkin-hall
-Very thin platform independent layer on top of Brave.
+Very thin platform independent layer on top of Brave that adds a better interface for submitting spans, keeping the necessary data around, [de]serializing headers and performing request sampling.
 
 # LICENSES
 Main license is MIT (check LICENSE file)
